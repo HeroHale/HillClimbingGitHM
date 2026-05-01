@@ -1,3 +1,4 @@
+import numpy as np
 from perlin_noise import PerlinNoise  # Note: you'll need to import "perlin-noise" into your pyhon interpreter.
 from typing import Tuple, List, Union
 class NoisyFunction:
@@ -10,6 +11,10 @@ class NoisyFunction:
             for c in range(size):
                 row.append(0.5*(noiseMaker([r/size,c/size])+1))
             self.values.append(row)
+
+    def to_ndarray(self):
+        temp = np.array(self.values)
+        return (temp * 256).astype(np.uint8)
 
     def get_size(self):
         return len(self.values)
